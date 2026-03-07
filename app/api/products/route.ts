@@ -8,18 +8,18 @@ import type { ProductListResponse } from '@/src/data/products';
  */
 export async function GET(): Promise<NextResponse> {
   try {
-    const productsList = getAllProducts();
+    const allProducts = getAllProducts();
 
-    if (productsList == undefined) {
+    if (allProducts == undefined) {
       throw new Error('Lista de produtos não encontrada');
     }
 
-    const response: ProductListResponse = {
-      products: productsList,
-      total: productsList.length,
+    const productsListResponse: ProductListResponse = {
+      products: allProducts,
+      total: allProducts.length,
     };
 
-    return NextResponse.json(response, { status: 200 });
+    return NextResponse.json(productsListResponse, { status: 200 });
   } catch (error) {
     console.error('Erro ao buscar produtos:', error);
     return NextResponse.json({ error: 'Erro ao buscar produtos' }, { status: 500 });

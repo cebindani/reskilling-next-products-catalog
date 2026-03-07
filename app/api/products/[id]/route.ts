@@ -25,11 +25,11 @@ export async function GET(
       return NextResponse.json({ error: 'Produto não encontrado' }, { status: 404 });
     }
 
-    const response: ProductDetailResponse = {
+    const productDetailResponse: ProductDetailResponse = {
       product,
     };
 
-    return NextResponse.json(response, { status: 200 });
+    return NextResponse.json(productDetailResponse, { status: 200 });
   } catch (error) {
     console.error('Erro ao buscar produto:', error);
     return NextResponse.json({ error: 'Erro ao buscar produto' }, { status: 500 });
