@@ -19,6 +19,8 @@ export async function GET(): Promise<NextResponse> {
       total: productsList.length,
     };
 
+    console.log(`Obtendo lista de produtos. Total: ${productsList.length}`);
+
     return NextResponse.json(response, { status: 200 });
   } catch (error) {
     console.error('Erro ao buscar produtos:', error);
