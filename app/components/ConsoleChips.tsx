@@ -1,36 +1,67 @@
-/**
- * ConsoleChips Component
- *
- * Exibe um chip com o nome do console do produto.
- *
- * @prop label - O nome do console do produto
- * @prop size - O tamanho do chip (ex: 'small', 'medium', 'large')
- */
-export default function ConsoleChips({
-  label: console,
-  size = 'small',
-}: {
+import React from 'react';
+import Chips from './Chips';
+
+interface ConsoleChipsProps {
   label: string;
   size?: 'small' | 'medium' | 'large';
-}) {
-  const sizeClasses = {
-    small: 'px-2 py-0.5 text-xs',
-    medium: 'px-3 py-1 text-sm',
-    large: 'px-4 py-2 text-lg',
+}
+
+const consoleVariants: Record<string, React.CSSProperties> = {
+  'PlayStation 5': {
+    backgroundColor: '#dbeafe',
+    color: '#1e40af',
+  },
+  'Xbox Series X/S': {
+    backgroundColor: '#dcfce7',
+    color: '#15803d',
+  },
+  'Nintendo Switch': {
+    backgroundColor: '#fee2e2',
+    color: '#991b1b',
+  },
+  PC: {
+    backgroundColor: '#f3e8ff',
+    color: '#6b21a8',
+  },
+  'PlayStation 4': {
+    backgroundColor: '#e0e7ff',
+    color: '#3730a3',
+  },
+  'Xbox One': {
+    backgroundColor: '#fef3c7',
+    color: '#b45309',
+  },
+};
+
+const sizeStyles: Record<string, React.CSSProperties> = {
+  small: {
+    padding: '0.125rem 0.5rem',
+    fontSize: '0.75rem',
+  },
+  medium: {
+    padding: '0.25rem 0.75rem',
+    fontSize: '0.875rem',
+  },
+  large: {
+    padding: '0.5rem 1rem',
+    fontSize: '1rem',
+  },
+};
+
+/**
+ * ConsoleChips Component
+ * Extensão de Chips especializada para exibir nomes de consoles com cores específicas
+ *
+ * @param label - O nome do console do produto
+ * @param size - O tamanho do chip: 'small' | 'medium' | 'large'
+ */
+export default function ConsoleChips({ label, size = 'small' }: ConsoleChipsProps) {
+  const consoleStyle = consoleVariants[label] || {
+    backgroundColor: '#f3f4f6',
+    color: '#1f2937',
   };
 
-  const consoleColors: { [key: string]: string } = {
-    'PlayStation 5': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-    'Xbox Series X/S': 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-    'Nintendo Switch': 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-  };
+  const customStyle = { ...sizeStyles[size], ...consoleStyle };
 
-  const colorClasses =
-    consoleColors[console] || 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
-
-  return (
-    <span className={`inline-flex items-center rounded-full ${colorClasses} ${sizeClasses[size]}`}>
-      {console}
-    </span>
-  );
+  return <Chips label={label} style={customStyle} />;
 }
