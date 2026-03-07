@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import StarRatingComponent from '@/components/RatingComponent';
 import ConsoleChips from '@/components/ConsoleChips';
 import StockStatus from '@/components/StockStatus';
+import Chips from '@/components/Chips';
 
 export async function generateMetadata({ params }: { params: Promise<{ product: Product }> }) {
   const { product } = await params;
@@ -79,12 +80,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   </h1>
                   <div className="flex flex-wrap gap-2">
                     <ConsoleChips label={product.console} size={'medium'} />
-                    <span className="inline-flex rounded-full bg-purple-100 px-4 py-1 text-sm font-medium text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                      {product.releaseYear}
-                    </span>
-                    <span className="inline-flex rounded-full bg-amber-100 px-4 py-1 text-sm font-medium text-amber-800 dark:bg-amber-900 dark:text-amber-200">
-                      {product.condition}
-                    </span>
+                    <Chips label={product.releaseYear.toString()} variant="purple" />
+                    <Chips label={product.condition} variant="amber" />
                   </div>
                 </div>
 
