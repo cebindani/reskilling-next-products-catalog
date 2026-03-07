@@ -147,7 +147,7 @@ export function getAllProducts(): Product[] | undefined {
 
 /**
  * Obtem produto por slug
- * @param slug
+ * @param slug - Slug do produto a ser buscado
  * @returns Produto correspondente ao slug ou undefined se não encontrado
  */
 export function getProductBySlug(slug: string): Product | undefined {
