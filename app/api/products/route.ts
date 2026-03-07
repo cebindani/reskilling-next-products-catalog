@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { products } from '@/src/data/products';
+import { getAllProducts } from '@/src/data/products';
 import type { ProductListResponse } from '@/src/data/products';
 
 /**
@@ -8,9 +8,15 @@ import type { ProductListResponse } from '@/src/data/products';
  */
 export async function GET(): Promise<NextResponse> {
   try {
+    const productsList = getAllProducts();
+
+    if (productsList == undefined) {
+      throw new Error('Lista de produtos não encontrada');
+    }
+
     const response: ProductListResponse = {
-      products: products,
-      total: products.length,
+      products: productsList,
+      total: productsList.length,
     };
 
     return NextResponse.json(response, { status: 200 });

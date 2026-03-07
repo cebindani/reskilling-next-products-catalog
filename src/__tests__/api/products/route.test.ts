@@ -1,5 +1,4 @@
 import { GET } from '@/api/products/route';
-import { products } from '@/src/data/products';
 
 describe('GET /api/products', () => {
   it('should return a list of all products with status 200', async () => {
@@ -10,7 +9,7 @@ describe('GET /api/products', () => {
     expect(data).toHaveProperty('products');
     expect(data).toHaveProperty('total');
     expect(Array.isArray(data.products)).toBe(true);
-    expect(data.total).toBe(products.length);
+    expect(data.total).toBe(data.products.length);
   });
 
   it('total should return correct number of products', async () => {

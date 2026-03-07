@@ -129,21 +129,29 @@ export const products: Product[] = [
 ];
 
 /**
- * Obtem produto por slug
- * @param slug
- * @returns Produto correspondente ao slug ou undefined se não encontrado
- */
-export function getProductBySlug(slug: string): Product | undefined {
-  return products.find((product) => product.slug === slug);
-}
-
-/**
  * Obtem produto por ID
  * @param id - ID do produto a ser buscado
  * @returns Produto correspondente ao ID ou undefined se não encontrado
  */
 export function getProductById(id: string): Product | undefined {
   return products.find((product) => product.id === id);
+}
+
+/**
+ * Obtem todos os produtos
+ * @returns Lista de todos os produtos
+ */
+export function getAllProducts(): Product[] | undefined {
+  return products;
+}
+
+/**
+ * Obtem produto por slug
+ * @param slug
+ * @returns Produto correspondente ao slug ou undefined se não encontrado
+ */
+export function getProductBySlug(slug: string): Product | undefined {
+  return products.find((product) => product.slug === slug);
 }
 
 /**
