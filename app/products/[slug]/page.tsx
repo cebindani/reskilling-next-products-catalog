@@ -5,6 +5,7 @@ import StarRatingComponent from '@/components/RatingComponent';
 import ConsoleChips from '@/components/ConsoleChips';
 import StockStatus from '@/components/StockStatus';
 import Chips from '@/components/Chips';
+import AddToCartButton from '@/components/AddToCartButton';
 
 async function getProductDetails(slug: string) {
   try {
@@ -107,16 +108,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   </p>
                 </div>
 
-                <button
-                  disabled={!product.inStock}
-                  className={`w-full rounded-lg px-6 py-4 text-lg font-semibold transition-colors ${
-                    product.inStock
-                      ? 'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600'
-                      : 'cursor-not-allowed bg-gray-300 text-gray-600 dark:bg-gray-700 dark:text-gray-500'
-                  }`}
-                >
-                  {product.inStock ? 'Adicionar ao Carrinho' : 'Indisponível'}
-                </button>
+                <AddToCartButton product={product} />
               </div>
             </div>
           </div>
