@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import styles from '../profile.module.css';
+import styles from './ProfileCartList.module.scss';
 
 export type CartItem = {
   id: string;

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/src/contexts/AuthContext';
 import type { Product } from '@/src/types/product';
-import styles from './AddToCartButton.module.css';
+import styles from './AddToCartButton.module.scss';
 
 type CartItem = {
   id: string;
@@ -21,6 +21,15 @@ type AddToCartButtonProps = {
 
 const CART_STORAGE_KEY = 'cartItems';
 
+/**
+ * AddToCartButton - Componente para adicionar produtos ao carrinho.
+ * - Verifica se o produto está em estoque.
+ * - Redireciona para login se usuário não autenticado.
+ * - Gerencia carrinho via localStorage.
+ * - Feedback visual ao adicionar produto.
+ * @param product - Objeto do produto a ser adicionado ao carrinho
+ * @returns JSX.Element
+ */
 export default function AddToCartButton({ product }: AddToCartButtonProps) {
   const { isAuthenticated } = useAuth();
   const router = useRouter();

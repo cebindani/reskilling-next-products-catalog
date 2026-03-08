@@ -1,26 +1,22 @@
 import Link from 'next/link';
+import styles from './BackButton.module.scss';
 
 interface BackButtonProps {
   label: string;
 }
 
+/**
+ * BackButton - Componente de botão para navegação de volta.
+ * @param label - Texto a ser exibido no botão
+ * @returns JSX.Element
+ */
 export default function BackButton({ label }: BackButtonProps) {
-  const backButtonStyle = {
-    textDecoration: 'none',
-    color: '#2563eb',
-    fontWeight: '500',
-    cursor: 'pointer',
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    minHeight: '2rem',
-    transition: 'color 0.2s',
-  };
-
   return (
-    <Link role="button" aria-roledescription="Voltar" href="/" style={backButtonStyle}>
-      <span>←</span>
-      <span>{label}</span>
+    <Link role="button" aria-roledescription="Voltar" href="/" className={styles.backButton}>
+      <span className={styles.backButtonIcon} aria-hidden="true">
+        ←
+      </span>
+      <span className={styles.backButtonLabel}>{label}</span>
     </Link>
   );
 }

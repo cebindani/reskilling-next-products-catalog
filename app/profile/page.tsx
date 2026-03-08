@@ -3,10 +3,10 @@
 import { useState, useSyncExternalStore } from 'react';
 import { User } from '@/src/types/user';
 import Link from 'next/link';
-import Header from '@/components/Header';
 import { useAuth } from '@/src/contexts/AuthContext';
 import ProfileCartList from './_components/ProfileCartList';
-import styles from './profile.module.css';
+import styles from './profile.module.scss';
+import BackButton from '@/components/BackButton';
 
 /**
  * CSR - Página de perfil do usuário.
@@ -64,24 +64,21 @@ export default function ProfilePage() {
 
   if (!isAuthenticated) {
     return (
-      <div className={styles.profileUnauthenticated}>
+      <main className={styles.profileUnauthenticated}>
         <h1 className={styles.profileMessage}>Faça login para acessar seu perfil</h1>
         <div className={styles.profileUnauthenticatedActions}>
           <Link href="/login" className={`${styles.profileButton} ${styles.profileButtonEdit}`}>
             Ir para Login
           </Link>
-          <Link href="/" className={styles.profileLink}>
-            Voltar para o Catálogo
-          </Link>
+
+          <BackButton label="Voltar para Catálogo" />
         </div>
-      </div>
+      </main>
     );
   }
 
   return (
-    <div className={styles.profile}>
-      <Header />
-
+    <main className={styles.profile}>
       <h1 className={styles.profileTitle}>Perfil do Usuário</h1>
 
       <div className={styles.profileCard}>
@@ -154,6 +151,7 @@ export default function ProfilePage() {
       </div>
 
       <ProfileCartList />
-    </div>
+      <BackButton label="Voltar para Catálogo" />
+    </main>
   );
 }

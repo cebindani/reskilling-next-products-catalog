@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
 import { useAuth } from '@/src/contexts/AuthContext';
-import styles from './Header.module.css';
+import styles from './Header.module.scss';
 
 export default function Header() {
   const { isAuthenticated, logout } = useAuth();
@@ -25,10 +25,7 @@ export default function Header() {
 
       <div className={styles.header__auth}>
         {!isAuthenticated ? (
-          <Link
-            href="/login"
-            className={`${styles.header__button} ${styles.header__buttonLogin}`}
-          >
+          <Link href="/login" className={`${styles.header__button} ${styles.header__buttonLogin}`}>
             Login
           </Link>
         ) : (

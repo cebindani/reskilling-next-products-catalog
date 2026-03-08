@@ -1,0 +1,76 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 9999px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.sizeSmall {
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.sizeMedium {
+  padding: 0.25rem 1rem;
+  font-size: 0.875rem;
+}
+
+.sizeLarge {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.variantPurple {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+}
+
+.variantAmber {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.variantBlue {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.variantGreen {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.variantRed {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .variantPurple {
+    background-color: #3b0764;
+    color: #e9d5ff;
+  }
+
+  .variantAmber {
+    background-color: #78350f;
+    color: #fde68a;
+  }
+
+  .variantBlue {
+    background-color: #1e3a8a;
+    color: #bfdbfe;
+  }
+
+  .variantGreen {
+    background-color: #14532d;
+    color: #bbf7d0;
+  }
+
+  .variantRed {
+    background-color: #7f1d1d;
+    color: #fecaca;
+  }
+}

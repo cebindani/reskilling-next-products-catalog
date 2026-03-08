@@ -1,3 +1,5 @@
+import styles from './RatingComponent.module.scss';
+
 /**
  * Rating and Reviews Component
  *
@@ -23,15 +25,15 @@ export default function StarRatingComponent({
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
   return (
-    <div className="mb-3 flex items-center gap-1" aria-label={`Avaliação: ${rating} de 5 estrelas`}>
-      <div className="flex items-center">
+    <div className={styles.ratingContainer} aria-label={`Avaliação: ${rating} de 5 estrelas`}>
+      <div className={styles.starsRow}>
         {[...Array(fullStars)].map((_, index) => (
           <svg
             key={`full-${index}`}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-4 h-4 text-yellow-500"
+            className={`${styles.star} ${styles.starFull}`}
           >
             <path d="M10 15l-5.878 3.09L5.64 12.545.763 9.455l6.09-.885L10 2l2.147 6.57 6.09.885-4.877 3.09 1.518 5.545z" />
           </svg>
@@ -41,7 +43,7 @@ export default function StarRatingComponent({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-4 h-4 text-yellow-500"
+            className={`${styles.star} ${styles.starFull}`}
           >
             <path d="M10 15l-5.878 3.09L5.64 12.545.763 9.455l6.09-.885L10 2v13z" />
           </svg>
@@ -52,14 +54,14 @@ export default function StarRatingComponent({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-4 h-4 text-gray-300"
+            className={`${styles.star} ${styles.starEmpty}`}
           >
             <path d="M10 15l-5.878 3.09L5.64 12.545.763 9.455l6.09-.885L10 2l2.147 6.57 6.09.885-4.877 3.09 1.518 5.545z" />
           </svg>
         ))}
       </div>
-      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{rating}</span>
-      <span className="text-xs text-gray-500 dark:text-gray-400">({countReviews} avaliações)</span>
+      <span className={styles.ratingValue}>{rating}</span>
+      <span className={styles.reviewsCount}>({countReviews} avaliações)</span>
     </div>
   );
 }

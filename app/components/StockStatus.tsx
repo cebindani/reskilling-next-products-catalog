@@ -1,3 +1,5 @@
+import styles from './StockStatus.module.scss';
+
 interface StockStatusProps {
   inStock: boolean;
 }
@@ -11,15 +13,11 @@ interface StockStatusProps {
  * @returns JSX.Element com o status de estoque estilizado
  */
 export default function StockStatus({ inStock }: StockStatusProps) {
-  const statusStyle = {
-    width: '100%',
-    borderRadius: '0.5rem',
-    padding: '0.75rem 1rem',
-    textAlign: 'center' as const,
-    fontWeight: '500',
-    backgroundColor: inStock ? '#dcfce7' : '#fee2e2',
-    color: inStock ? '#15803d' : '#991b1b',
-  };
+  const statusClass = inStock ? styles.statusInStock : styles.statusOutOfStock;
 
-  return <div style={statusStyle}>{inStock ? <>✓ Em Estoque</> : <>✕ Fora de Estoque</>}</div>;
+  return (
+    <div className={`${styles.status} ${statusClass}`}>
+      {inStock ? <>✓ Em Estoque</> : <>✕ Fora de Estoque</>}
+    </div>
+  );
 }

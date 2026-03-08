@@ -1,33 +1,11 @@
-import React from 'react';
+import styles from './Chips.module.scss';
 
 interface ChipsProps {
   label: string;
   variant?: 'purple' | 'amber' | 'blue' | 'green' | 'red';
-  style?: React.CSSProperties;
+  size?: 'small' | 'medium' | 'large';
+  className?: string;
 }
-
-const variantStyles: Record<string, React.CSSProperties> = {
-  purple: {
-    backgroundColor: '#f3e8ff',
-    color: '#6b21a8',
-  },
-  amber: {
-    backgroundColor: '#fef3c7',
-    color: '#b45309',
-  },
-  blue: {
-    backgroundColor: '#dbeafe',
-    color: '#1e40af',
-  },
-  green: {
-    backgroundColor: '#dcfce7',
-    color: '#15803d',
-  },
-  red: {
-    backgroundColor: '#fee2e2',
-    color: '#991b1b',
-  },
-};
 
 /**
  * Chips Component
@@ -35,20 +13,21 @@ const variantStyles: Record<string, React.CSSProperties> = {
  *
  * @param label - Texto a ser exibido no chip
  * @param variant - Cor do chip: 'purple' | 'amber' | 'blue' | 'green' | 'red'
- * @param style - Estilos customizados adicionais
+ * @param size - Tamanho do chip: 'small' | 'medium' | 'large'
+ * @param className - Classe CSS adicional opcional
  * @returns JSX.Element com o chip estilizado
  */
-export default function Chips({ label, variant = 'purple', style }: ChipsProps) {
-  const defaultStyle: React.CSSProperties = {
-    display: 'inline-flex',
-    borderRadius: '9999px',
-    padding: '0.25rem 1rem',
-    fontSize: '0.875rem',
-    fontWeight: '500',
-    ...variantStyles[variant],
-  };
+export default function Chips({
+  label,
+  variant = 'purple',
+  size = 'medium',
+  className,
+}: ChipsProps) {
+  const variantClass =
+    styles[`variant${variant[0]?.toUpperCase()}${variant.slice(1)}` as keyof typeof styles];
+  const sizeClass = styles[`size${size[0]?.toUpperCase()}${size.slice(1)}` as keyof typeof styles];
 
-  const chipsStyle = { ...defaultStyle, ...style };
+  const classes = [styles.chip, variantClass, sizeClass, className].filter(Boolean).join(' ');
 
-  return <span style={chipsStyle}>{label}</span>;
+  return <span className={classes}>{label}</span>;
 }
