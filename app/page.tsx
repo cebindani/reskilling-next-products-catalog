@@ -1,25 +1,12 @@
 import { Product } from '@/src/types/product';
+import { getAllProducts } from '@/src/data/products';
 import ProductCard from './components/ProductCard';
 import { SITE_METADATA } from '@/src/config/constants';
 
 export const revalidate = 600; // ISR: revalidate a cada 10 minutos
 
-async function getProducts() {
-  try {
-    const res = await fetch('http://localhost:3000/api/products', {
-      next: { revalidate: revalidate },
-    });
-
-    const data = await res.json();
-    return data.products || [];
-  } catch (error) {
-    console.error('Erro ao buscar produtos:', error);
-    return [];
-  }
-}
-
 export default async function Home() {
-  const products = await getProducts();
+  const products = getAllProducts() || [];
   const productsToDisplay = products.slice(0, 6);
 
   return (
