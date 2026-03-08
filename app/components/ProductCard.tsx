@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Product } from '@/src/data/products';
+import { Product } from '@/src/types/product';
 import ConsoleChips from './ConsoleChips';
 import StarRatingComponent from './RatingComponent';
 

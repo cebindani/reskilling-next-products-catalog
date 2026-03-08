@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getProductById, getProductBySlug } from '@/src/data/products';
-import type { ProductDetailResponse } from '@/src/data/products';
+import type { ProductDetailResponse } from '@/src/types/product';
 
 /**
  * GET /api/products/[id]

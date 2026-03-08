@@ -1,33 +1,4 @@
-export interface Product {
-  id: string;
-  title: string;
-  description: string;
-  longDescription: string;
-  price: number;
-  image: string;
-  console:
-    | 'PlayStation 5'
-    | 'Xbox Series X/S'
-    | 'Nintendo Switch'
-    | 'PC'
-    | 'PlayStation 4'
-    | 'Xbox One';
-  releaseYear: number;
-  condition: 'Novo' | 'Usado';
-  rating: number;
-  reviews: number;
-  inStock: boolean;
-  slug: string;
-}
-
-export type ProductListResponse = {
-  products: Product[];
-  total: number;
-};
-
-export type ProductDetailResponse = {
-  product: Product | null;
-};
+import { Product } from '../types/product';
 
 export const products: Product[] = [
   {
@@ -37,7 +8,8 @@ export const products: Product[] = [
     longDescription:
       'Elden Ring é um jogo épico de RPG de ação com um mundo aberto vasto e desafiador. Desenvolvido por FromSoftware em colaboração com George R.R. Martin, oferece uma experiência imersiva com combate intenso, exploration gratificante e história envolvente.',
     price: 199.9,
-    image: 'https://upload.wikimedia.org/wikipedia/pt/thumb/0/0d/Elden_Ring_capa.jpg/330px-Elden_Ring_capa.jpg',
+    image:
+      'https://upload.wikimedia.org/wikipedia/pt/thumb/0/0d/Elden_Ring_capa.jpg/330px-Elden_Ring_capa.jpg',
     console: 'PlayStation 5',
     releaseYear: 2022,
     condition: 'Novo',

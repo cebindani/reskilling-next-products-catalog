@@ -1,4 +1,4 @@
-import { Product } from '@/src/data/products';
+import { Product } from '@/src/types/product';
 import ProductCard from './components/ProductCard';
 import { SITE_METADATA } from '@/src/config/constants';
 
@@ -9,7 +9,7 @@ async function getProducts() {
     const res = await fetch('http://localhost:3000/api/products', {
       next: { revalidate: revalidate },
     });
-    
+
     const data = await res.json();
     return data.products || [];
   } catch (error) {
@@ -21,7 +21,7 @@ async function getProducts() {
 export default async function Home() {
   const products = await getProducts();
   const productsToDisplay = products.slice(0, 6);
-  
+
   return (
     <main className="min-h-screen bg-gray-50 py-12 dark:bg-gray-900">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
