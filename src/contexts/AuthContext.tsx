@@ -1,6 +1,5 @@
 'use client';
 
-import { redirect } from 'next/dist/server/api-utils';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthContextType {
@@ -16,25 +15,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const userToken = localStorage.getItem('userToken');
     setIsAuthenticated(!!userToken);
-    setMounted(true);
   }, []);
 
   const login = () => {
-    localStorage.setItem('userToken', 'logged-in');
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('userToken', 'logged-in');
+    }
     setIsAuthenticated(true);
   };
 
   const logout = () => {
-    localStorage.removeItem('userToken');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('userToken');
+    }
     setIsAuthenticated(false);
-    redirect('/');
   };
-
-  if (!mounted) {
-    return <>{children}</>;
-  }
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>

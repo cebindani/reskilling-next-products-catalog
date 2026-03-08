@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import { User } from '@/src/types/user';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import { useAuth } from '@/src/contexts/AuthContext';
+import ProfileCartList from './_components/ProfileCartList';
 import styles from './profile.module.css';
 
 /**
@@ -13,25 +14,38 @@ import styles from './profile.module.css';
  * Dados do usuário persistem em localStorage.
  */
 export default function ProfilePage() {
-  const { isAuthenticated, login, logout } = useAuth();
-  const [mounted, setMounted] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [user, setUser] = useState<User>({
-    id: '1',
-    name: '',
-    email: '',
-    phone: '',
+  const { isAuthenticated, logout } = useAuth();
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+  const [isEditing, setIsEditing] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return !localStorage.getItem('userData');
   });
+  const [user, setUser] = useState<User>(() => {
+    if (typeof window === 'undefined') {
+      return {
+        id: '1',
+        name: 'Dino da Silva Sauro',
+        email: 'dino@silvasauromail.com',
+        phone: '(11) 99999-9999',
+      };
+    }
 
-  useEffect(() => {
     const savedUser = localStorage.getItem('userData');
     if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    } else {
-      setIsEditing(true);
+      return JSON.parse(savedUser);
     }
-    setMounted(true);
-  }, []);
+
+    return {
+      id: '1',
+      name: 'Dino da Silva Sauro',
+      email: 'dino@silvasauromail.com',
+      phone: '(11) 99999-9999',
+    };
+  });
 
   const handleSave = () => {
     localStorage.setItem('userData', JSON.stringify(user));
@@ -53,9 +67,9 @@ export default function ProfilePage() {
       <div className={styles.profileUnauthenticated}>
         <h1 className={styles.profileMessage}>Faça login para acessar seu perfil</h1>
         <div className={styles.profileUnauthenticatedActions}>
-          <button onClick={login} className={`${styles.profileButton} ${styles.profileButtonEdit}`}>
-            Login
-          </button>
+          <Link href="/login" className={`${styles.profileButton} ${styles.profileButtonEdit}`}>
+            Ir para Login
+          </Link>
           <Link href="/" className={styles.profileLink}>
             Voltar para o Catálogo
           </Link>
@@ -138,6 +152,8 @@ export default function ProfilePage() {
           )}
         </div>
       </div>
+
+      <ProfileCartList />
     </div>
   );
 }
