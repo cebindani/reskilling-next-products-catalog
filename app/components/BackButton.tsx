@@ -14,7 +14,6 @@ export default function BackButton({ label }: BackButtonProps) {
     alignItems: 'center',
     gap: '0.5rem',
     minHeight: '2rem',
-    marginBottom: '2rem',
     transition: 'color 0.2s',
   };
 

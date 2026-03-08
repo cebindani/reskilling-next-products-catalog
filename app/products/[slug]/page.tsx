@@ -49,9 +49,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   return (
     <main className="min-h-screen bg-gray-50 py-12 dark:bg-gray-900">
+      <Header />
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <Header />
-
         <div className="mx-auto max-w-5xl overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-800">
           <div className="grid gap-8 p-6 md:grid-cols-2 md:p-10">
             <div className="flex flex-col items-center justify-center">

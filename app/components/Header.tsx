@@ -1,29 +1,53 @@
+'use client';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import BackButton from '@/components/BackButton';
+import { useAuth } from '@/src/contexts/AuthContext';
+import styles from './Header.module.css';
 
 export default function Header() {
-  const backButtonStyle = {
-    textDecoration: 'none',
-    color: '#2563eb',
-    fontWeight: '500',
-    cursor: 'pointer',
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    minHeight: '2rem',
-    marginBottom: '2rem',
-    transition: 'color 0.2s',
-  };
+  const { isAuthenticated, logout } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
-    <header className="ps-6 pe-6 mb-12 text-center flex justify-between items-center">
-      <Link role="button" aria-roledescription="Voltar" href="/" style={backButtonStyle}>
-        <span>←</span>
-        <span>Voltar para Catálogo</span>
-      </Link>
+    <header className={styles.header}>
+      <div className={styles.header__navigation}>
+        <BackButton label="Voltar para Catálogo" />
+      </div>
 
-      <span className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white md:text-5xl">
-        Garage Games
-      </span>
+      <h1 className={styles.header__title}>Garage Games</h1>
+
+      <div className={styles.header__auth}>
+        {!isAuthenticated ? (
+          <Link
+            href="/login"
+            className={`${styles.header__button} ${styles.header__buttonLogin}`}
+          >
+            Login
+          </Link>
+        ) : (
+          <div className={styles.header__authGroup}>
+            <Link
+              href="/profile"
+              className={`${styles.header__button} ${styles.header__buttonProfile}`}
+            >
+              Perfil
+            </Link>
+            <button
+              onClick={logout}
+              className={`${styles.header__button} ${styles.header__buttonLogout}`}
+            >
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
     </header>
   );
 }
