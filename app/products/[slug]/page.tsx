@@ -1,14 +1,26 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Product } from '@/src/types/product';
 import Header from '@/components/Header';
 import StarRatingComponent from '@/components/RatingComponent';
 import ConsoleChips from '@/components/ConsoleChips';
 import StockStatus from '@/components/StockStatus';
 import Chips from '@/components/Chips';
 
-export async function generateMetadata({ params }: { params: Promise<{ product: Product }> }) {
-  const { product } = await params;
+async function getProductDetails(slug: string) {
+  try {
+    const res = await fetch(`http://localhost:3000/api/products/${slug}`);
+
+    const data = await res.json();
+    return data.product || null;
+  } catch (error) {
+    console.error('Erro ao buscar produtos:', error);
+    return null;
+  }
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const product = await getProductDetails(slug);
 
   if (!product) {
     return {
@@ -25,18 +37,6 @@ export async function generateMetadata({ params }: { params: Promise<{ product: 
       images: [product.image],
     },
   };
-}
-
-async function getProductDetails(slug: string) {
-  try {
-    const res = await fetch(`http://localhost:3000/api/products/${slug}`);
-
-    const data = await res.json();
-    return data.product || null;
-  } catch (error) {
-    console.error('Erro ao buscar produtos:', error);
-    return null;
-  }
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
