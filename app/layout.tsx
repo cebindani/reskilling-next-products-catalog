@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Roboto_Mono, Roboto_Flex } from 'next/font/google';
 import './globals.css';
 import { SITE_METADATA } from '@/src/config/constants';
+import { AuthProvider } from '@/src/contexts/AuthContext';
 
 const robotoMono = Roboto_Mono({
   variable: '--font-roboto-mono',
@@ -25,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${robotoMono.variable} ${robotoSans.variable} antialiased`}>{children}</body>
+      <body className={`${robotoMono.variable} ${robotoSans.variable} antialiased`}>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }
