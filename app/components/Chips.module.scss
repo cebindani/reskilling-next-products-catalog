@@ -4,6 +4,7 @@
   justify-content: center;
   white-space: nowrap;
   border-radius: 9999px;
+  border: 1px solid transparent;
   font-weight: 500;
   line-height: 1.2;
 }
@@ -24,53 +25,63 @@
 }
 
 .variantPurple {
-  background-color: #f3e8ff;
-  color: #6b21a8;
+  background-color: #fbefff;
+  border-color: #d8b9ff;
+  color: #6639ba;
 }
 
 .variantAmber {
-  background-color: #fef3c7;
-  color: #b45309;
+  background-color: #fff8c5;
+  border-color: #d4a72c;
+  color: #9a6700;
 }
 
 .variantBlue {
-  background-color: #dbeafe;
-  color: #1e40af;
+  background-color: #ddf4ff;
+  border-color: #54aeff;
+  color: #0969da;
 }
 
 .variantGreen {
-  background-color: #dcfce7;
-  color: #15803d;
+  background-color: #dafbe1;
+  border-color: #4ac26b;
+  color: #1a7f37;
 }
 
 .variantRed {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: #ffebe9;
+  border-color: #ff8182;
+  color: #cf222e;
 }
 
 @media (prefers-color-scheme: dark) {
   .variantPurple {
-    background-color: #3b0764;
-    color: #e9d5ff;
+    background-color: rgba(102, 57, 186, 0.2);
+    border-color: rgba(191, 134, 255, 0.45);
+    color: #d2a8ff;
   }
 
   .variantAmber {
-    background-color: #78350f;
-    color: #fde68a;
+    background-color: rgba(154, 103, 0, 0.25);
+    border-color: rgba(212, 167, 44, 0.45);
+    color: #e3b341;
   }
 
   .variantBlue {
-    background-color: #1e3a8a;
-    color: #bfdbfe;
+    background-color: rgba(9, 105, 218, 0.22);
+    border-color: rgba(84, 174, 255, 0.5);
+    color: #79c0ff;
   }
 
   .variantGreen {
-    background-color: #14532d;
-    color: #bbf7d0;
+    background-color: rgba(26, 127, 55, 0.25);
+    border-color: rgba(74, 194, 107, 0.5);
+    color: #3fb950;
   }
 
   .variantRed {
-    background-color: #7f1d1d;
-    color: #fecaca;
+    background-color: rgba(207, 34, 46, 0.2);
+    border-color: rgba(248, 81, 73, 0.5);
+    color: #ff7b72;
   }
 }

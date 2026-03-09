@@ -16,28 +16,20 @@
 }
 
 .starFull {
-  color: #eab308;
+  color: #d29922;
 }
 
 .starEmpty {
-  color: #d1d5db;
+  color: var(--border-color);
 }
 
 .ratingValue {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
-
-  @media (prefers-color-scheme: dark) {
-    color: #d1d5db;
-  }
+  color: var(--text-primary);
 }
 
 .reviewsCount {
   font-size: 0.75rem;
-  color: #6b7280;
-
-  @media (prefers-color-scheme: dark) {
-    color: #9ca3af;
-  }
+  color: var(--text-tertiary);
 }
