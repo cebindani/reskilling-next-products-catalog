@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/src/contexts/AuthContext';
 import styles from './login.module.scss';
@@ -13,11 +13,28 @@ import styles from './login.module.scss';
 export default function LoginPage() {
   const { isAuthenticated, login } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [mounted, setMounted] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  const getRedirectTarget = () => {
+    const redirect = searchParams.get('redirect');
+
+    // Evita open redirect e loop para a própria página de login.
+    if (
+      !redirect ||
+      !redirect.startsWith('/') ||
+      redirect.startsWith('//') ||
+      redirect === '/login'
+    ) {
+      return '/profile';
+    }
+
+    return redirect;
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -25,16 +42,16 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (mounted && isAuthenticated) {
-      router.push('/profile');
+      router.push(getRedirectTarget());
     }
-  }, [isAuthenticated, mounted, router]);
+  }, [isAuthenticated, mounted, router, searchParams]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (formData.email && formData.password) {
       login();
-      router.push('/profile');
+      router.push(getRedirectTarget());
     }
   };
 
