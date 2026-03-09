@@ -39,7 +39,8 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
     if (!product.inStock) return;
 
     if (!isAuthenticated) {
-      router.push('/login');
+      const currentPath = `${window.location.pathname}${window.location.search}`;
+      router.push(`/login?redirect=${encodeURIComponent(currentPath)}`);
       return;
     }
 
