@@ -71,7 +71,7 @@ export default function ProfilePage() {
             Ir para Login
           </Link>
 
-          <BackButton label="Voltar para Catálogo" />
+          <BackButton label="Voltar" previousPage />
         </div>
       </main>
     );
@@ -79,6 +79,24 @@ export default function ProfilePage() {
 
   return (
     <main className={styles.profile}>
+      <header className={styles.profileNav}>
+        <BackButton label="Voltar" previousPage />
+
+        <div className={styles.profileNavActions}>
+          <Link href="/" className={`${styles.profileNavButton} ${styles.profileNavButtonCatalog}`}>
+            Ir para Catálogo
+          </Link>
+
+          <button
+            type="button"
+            onClick={logout}
+            className={`${styles.profileNavButton} ${styles.profileNavButtonLogout}`}
+          >
+            Logout
+          </button>
+        </div>
+      </header>
+
       <h1 className={styles.profileTitle}>Perfil do Usuário</h1>
 
       <div className={styles.profileCard}>
@@ -139,19 +157,12 @@ export default function ProfilePage() {
               >
                 Editar
               </button>
-              <button
-                onClick={logout}
-                className={`${styles.profileButton} ${styles.profileButtonLogout}`}
-              >
-                Logout
-              </button>
             </>
           )}
         </div>
       </div>
 
       <ProfileCartList />
-      <BackButton label="Voltar para Catálogo" />
     </main>
   );
 }
