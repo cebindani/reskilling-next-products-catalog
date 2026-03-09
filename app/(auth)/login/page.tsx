@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/src/contexts/AuthContext';
-import styles from './login.module.css';
+import styles from './login.module.scss';
 
 /**
  * Página de Login - Route Group (auth)

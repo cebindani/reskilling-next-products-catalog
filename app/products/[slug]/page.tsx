@@ -6,6 +6,7 @@ import ConsoleChips from '@/components/ConsoleChips';
 import StockStatus from '@/components/StockStatus';
 import Chips from '@/components/Chips';
 import AddToCartButton from '@/components/AddToCartButton';
+import styles from './page.module.scss';
 
 async function getProductDetails(slug: string) {
   try {
@@ -49,63 +50,52 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 py-12 dark:bg-gray-900">
+    <main className={styles.productPage}>
       <Header />
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-800">
-          <div className="grid gap-8 p-6 md:grid-cols-2 md:p-10">
-            <div className="flex flex-col items-center justify-center">
-              <div className="relative h-96 w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-700">
+      <div className="container">
+        <div className={styles.card}>
+          <div className={styles.cardContent}>
+            <div className={styles.imageSection}>
+              <div className={styles.imageContainer}>
                 <Image
                   src={product.image}
                   alt={product.title}
                   fill
-                  className="object-cover"
+                  className={styles.image}
                   priority
                 />
               </div>
 
-              <div className="mt-6 w-full">
+              <div className={styles.stockSection}>
                 <StockStatus inStock={product.inStock} />
               </div>
             </div>
 
-            <div className="flex flex-col justify-between">
+            <div className={styles.infoSection}>
               <div>
-                <div className="mb-4">
-                  <h1 className="mb-3 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
-                    {product.title}
-                  </h1>
-                  <div className="flex flex-wrap gap-2">
+                <div className={styles.headerSection}>
+                  <h1 className={styles.title}>{product.title}</h1>
+                  <div className={styles.chipsContainer}>
                     <ConsoleChips label={product.console} size={'medium'} />
                     <Chips label={product.releaseYear.toString()} variant="purple" />
                     <Chips label={product.condition} variant="amber" />
                   </div>
                 </div>
 
-                <p className="mb-6 text-lg text-gray-600 dark:text-gray-400">
-                  {product.description}
-                </p>
+                <p className={styles.description}>{product.description}</p>
 
-                <div className="mb-8 border-t border-gray-200 pt-6 dark:border-gray-700">
-                  <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
-                    Sobre o Produto
-                  </h3>
-                  <p className="leading-relaxed text-gray-600 dark:text-gray-400">
-                    {product.longDescription}
-                  </p>
+                <div className={styles.aboutSection}>
+                  <h3 className={styles.aboutTitle}>Sobre o Produto</h3>
+                  <p className={styles.aboutText}>{product.longDescription}</p>
                 </div>
 
                 <StarRatingComponent rating={product.rating} countReviews={product.reviews} />
               </div>
 
-              {/* Price and CTA */}
-              <div className="border-t border-gray-200 pt-6 dark:border-gray-700">
-                <div className="mb-6">
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Preço</p>
-                  <p className="text-4xl font-bold text-gray-900 dark:text-white">
-                    R$ {product.price.toFixed(2)}
-                  </p>
+              <div className={styles.priceSection}>
+                <div className={styles.priceContainer}>
+                  <p className={styles.priceLabel}>Preço</p>
+                  <p className={styles.priceValue}>R$ {product.price.toFixed(2)}</p>
                 </div>
 
                 <AddToCartButton product={product} />
