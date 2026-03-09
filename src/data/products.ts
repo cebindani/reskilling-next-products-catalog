@@ -47,7 +47,7 @@ export const products: Product[] = [
     condition: 'Usado',
     rating: 4.3,
     reviews: 892,
-    inStock: true,
+    inStock: false,
     slug: 'cyberpunk-2077',
   },
   {
