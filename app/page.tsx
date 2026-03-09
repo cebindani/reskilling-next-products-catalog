@@ -8,7 +8,6 @@ export const revalidate = 600; // ISR: revalidate a cada 10 minutos
 
 export default async function Home() {
   const products = getAllProducts() || [];
-  const productsToDisplay = products.slice(0, 6);
 
   return (
     <main className={styles.home}>
@@ -23,19 +22,11 @@ export default async function Home() {
 
         <div className={styles.productsWrapper}>
           <div className={styles.productsGrid}>
-            {productsToDisplay.map((product: Product) => (
+            {products.map((product: Product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         </div>
-
-        {products.length > productsToDisplay.length && (
-          <div className={styles.viewAllSection}>
-            <a href="/products" className={styles.viewAllLink}>
-              Ver Todos os Produtos ({products.length})
-            </a>
-          </div>
-        )}
       </div>
     </main>
   );
