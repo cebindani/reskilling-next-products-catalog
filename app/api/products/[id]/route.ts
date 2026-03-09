@@ -11,15 +11,15 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ): Promise<NextResponse> {
   try {
-    const { id } = await params;
+    const { id: productId } = await params;
 
     await new Promise((resolve) => setTimeout(resolve, 100));
 
-    if (!id) {
+    if (!productId) {
       return NextResponse.json({ error: 'ID do produto é necessário' }, { status: 400 });
     }
 
-    const product = getProductById(id);
+    const product = getProductById(productId);
 
     if (!product) {
       return NextResponse.json({ error: 'Produto não encontrado' }, { status: 404 });

@@ -11,7 +11,7 @@ export const SITE_METADATA = {
   author: 'Seu Nome',
 };
 
-export const ROUTES = {
+export const APP_ROUTES = {
   HOME: '/',
   PRODUCTS: '/products',
   LOGIN: '/auth/login',
