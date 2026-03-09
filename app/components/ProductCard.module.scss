@@ -1,5 +1,7 @@
 .card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   overflow: hidden;
   border-radius: 0.5rem;
   border: 1px solid #e5e7eb;
@@ -41,6 +43,9 @@
 }
 
 .content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 1rem;
 }
 
@@ -104,6 +109,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: auto;
   border-top: 1px solid #e5e7eb;
   padding-top: 0.75rem;
 
