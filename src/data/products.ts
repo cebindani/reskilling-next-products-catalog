@@ -1,33 +1,4 @@
-export interface Product {
-  id: string;
-  title: string;
-  description: string;
-  longDescription: string;
-  price: number;
-  image: string;
-  console:
-    | 'PlayStation 5'
-    | 'Xbox Series X/S'
-    | 'Nintendo Switch'
-    | 'PC'
-    | 'PlayStation 4'
-    | 'Xbox One';
-  releaseYear: number;
-  condition: 'Novo' | 'Usado';
-  rating: number;
-  reviews: number;
-  inStock: boolean;
-  slug: string;
-}
-
-export type ProductListResponse = {
-  products: Product[];
-  total: number;
-};
-
-export type ProductDetailResponse = {
-  product: Product | null;
-};
+import { Product } from '../types/product';
 
 export const products: Product[] = [
   {
@@ -37,7 +8,8 @@ export const products: Product[] = [
     longDescription:
       'Elden Ring é um jogo épico de RPG de ação com um mundo aberto vasto e desafiador. Desenvolvido por FromSoftware em colaboração com George R.R. Martin, oferece uma experiência imersiva com combate intenso, exploration gratificante e história envolvente.',
     price: 199.9,
-    image: 'https://images.unsplash.com/photo-1538481143235-a9d42016adb5?w=500&h=500&fit=crop',
+    image:
+      'https://upload.wikimedia.org/wikipedia/pt/thumb/0/0d/Elden_Ring_capa.jpg/330px-Elden_Ring_capa.jpg',
     console: 'PlayStation 5',
     releaseYear: 2022,
     condition: 'Novo',
@@ -53,7 +25,7 @@ export const products: Product[] = [
     longDescription:
       'The Legend of Zelda: Tears of the Kingdom é a sequência de Breath of the Wild. Link retorna em uma aventura épica com novas mecânicas de puzzle e exploração em um mundo ainda maior e mais detalhado. Essencial para fãs de adventure.',
     price: 349.9,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop',
+    image: 'https://dummyimage.com/300',
     console: 'Nintendo Switch',
     releaseYear: 2023,
     condition: 'Novo',
@@ -69,7 +41,7 @@ export const products: Product[] = [
     longDescription:
       'Cyberpunk 2077 é um RPG ambientado em Night City, um futuro distópico onde você cria seu próprio personagem e faz escolhas que moldam a história. Com gameplay intenso, diálogos dinâmicos e um mundo vasto para explorar.',
     price: 149.9,
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500&h=500&fit=crop',
+    image: 'https://dummyimage.com/300',
     console: 'Xbox Series X/S',
     releaseYear: 2020,
     condition: 'Usado',
@@ -85,7 +57,7 @@ export const products: Product[] = [
     longDescription:
       'God of War Ragnarök conclui a jornada nórdica de Kratos e Atreus com uma narrativa épica, combate visceral refinado e personagens memoráveis. Um dos maiores exclusivos do PlayStation 5 com gráficos impressionantes.',
     price: 329.9,
-    image: 'https://images.unsplash.com/photo-1534423654285-fb1ff2824eaf?w=500&h=500&fit=crop',
+    image: 'https://dummyimage.com/300',
     console: 'PlayStation 5',
     releaseYear: 2022,
     condition: 'Novo',
@@ -101,7 +73,7 @@ export const products: Product[] = [
     longDescription:
       'Starfield é um jogo de RPG em primeira pessoa onde você explora o espaço, descobre novos planetas, recruta companheiros e tem liberdade para personalizador sua nave. Um título ambicioso e imersivo para fãs de sci-fi.',
     price: 279.9,
-    image: 'https://images.unsplash.com/photo-1552546154-23182a5f0d08?w=500&h=500&fit=crop',
+    image: 'https://dummyimage.com/300',
     console: 'Xbox Series X/S',
     releaseYear: 2023,
     condition: 'Novo',
@@ -117,7 +89,7 @@ export const products: Product[] = [
     longDescription:
       'Hollow Knight é um jogo Metroidvania 2D indie que cativa com sua arte em pixel art, ambientes atmosféricos e combate desafiador. Explore o reino subterrâneo de Hallownest resolvendo puzzles e derrotando bosses memoráveis.',
     price: 59.9,
-    image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=500&h=500&fit=crop',
+    image: 'https://dummyimage.com/300',
     console: 'Nintendo Switch',
     releaseYear: 2017,
     condition: 'Usado',

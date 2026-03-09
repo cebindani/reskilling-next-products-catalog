@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
-import { getProductById } from '@/src/data/products';
-import type { ProductDetailResponse } from '@/src/data/products';
+import { getProductById, getProductBySlug } from '@/src/data/products';
+import type { ProductDetailResponse } from '@/src/types/product';
 
 /**
  * GET /api/products/[id]
- * Retorna detalhes de um produto específico pelo ID
+ * Retorna detalhes de um produto específico pelo ID ou slug
+ * Tenta buscar por slug primeiro, depois por id para maior flexibilidade.
  */
 export async function GET(
   _request: Request,
@@ -16,10 +17,15 @@ export async function GET(
     await new Promise((resolve) => setTimeout(resolve, 100));
 
     if (!productId) {
-      return NextResponse.json({ error: 'ID do produto é necessário' }, { status: 400 });
+      return NextResponse.json({ error: 'ID ou slug do produto é necessário' }, { status: 400 });
     }
 
-    const product = getProductById(productId);
+    let product = getProductBySlug(productId);
+
+    // Se não encontrar, tenta por id
+    if (!product) {
+      product = getProductById(productId);
+    }
 
     if (!product) {
       return NextResponse.json({ error: 'Produto não encontrado' }, { status: 404 });

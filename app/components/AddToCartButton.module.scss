@@ -1,0 +1,49 @@
+.addToCartButton {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  border: none;
+}
+
+.inStock {
+  background-color: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #1d4ed8;
+
+    &:hover {
+      background-color: #2563eb;
+    }
+  }
+}
+
+.outOfStock {
+  cursor: not-allowed;
+  background-color: #d1d5db;
+  color: #4b5563;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #374151;
+    color: #6b7280;
+  }
+}
+
+.feedback {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #16a34a;
+
+  @media (prefers-color-scheme: dark) {
+    color: #4ade80;
+  }
+}

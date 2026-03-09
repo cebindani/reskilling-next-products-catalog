@@ -2,13 +2,13 @@
  * Constantes da Aplicação
  */
 
-export const APP_NAME = 'GameVault';
+export const APP_NAME = 'Garage Games';
 export const APP_VERSION = '1.0.0';
 
 export const SITE_METADATA = {
-  title: 'GameVault - Catálogo de Jogos de Videogame',
-  description: 'Explore nosso catálogo de jogos de videogame para todas as plataformas',
-  author: 'Seu Nome',
+  title: `${APP_NAME} - Catálogo de Jogos de Videogame`,
+  description: 'Venda de garagem de jogos para videogames usados e novos',
+  author: 'Daniele Maila Cebin',
 };
 
 export const APP_ROUTES = {

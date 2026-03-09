@@ -1,0 +1,129 @@
+.header {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'title'
+    'actions';
+  gap: 0.875rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #dbeafe;
+
+  @media (prefers-color-scheme: dark) {
+    border-color: #374151;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'nav title auth';
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+    padding: 1rem 1.5rem;
+  }
+}
+
+.header__navigation {
+  grid-area: nav;
+  justify-self: start;
+}
+
+.header__title {
+  grid-area: title;
+  margin: 0;
+  text-align: center;
+  font-size: 1.625rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+  line-height: 1.1;
+
+  @media (prefers-color-scheme: dark) {
+    color: #f8fafc;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+.header__auth {
+  grid-area: auth;
+  justify-self: end;
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+}
+
+.header__authGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header__button {
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  min-height: 2.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+
+  &:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+  }
+}
+
+.header__buttonLogin {
+  background-color: #2563eb;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}
+
+.header__buttonLogout {
+  background-color: #dc2626;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #b91c1c;
+  }
+}
+
+.header__buttonProfile {
+  background-color: #334155;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #1e293b;
+  }
+}
+
+@media (max-width: 767px) {
+  .header__navigation {
+    grid-area: actions;
+    justify-self: start;
+  }
+
+  .header__auth {
+    grid-area: actions;
+    justify-self: end;
+  }
+}
