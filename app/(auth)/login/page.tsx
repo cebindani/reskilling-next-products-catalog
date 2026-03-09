@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useSyncExternalStore } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/src/contexts/AuthContext';
@@ -14,13 +14,17 @@ export default function LoginPage() {
   const { isAuthenticated, login } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
-  const getRedirectTarget = () => {
+  const getRedirectTarget = useCallback(() => {
     const redirect = searchParams.get('redirect');
 
     // Evita open redirect e loop para a própria página de login.
@@ -34,17 +38,13 @@ export default function LoginPage() {
     }
 
     return redirect;
-  };
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     if (mounted && isAuthenticated) {
       router.push(getRedirectTarget());
     }
-  }, [isAuthenticated, mounted, router, searchParams]);
+  }, [getRedirectTarget, isAuthenticated, mounted, router]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

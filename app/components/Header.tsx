@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import BackButton from '@/components/BackButton';
 import { useAuth } from '@/src/contexts/AuthContext';
@@ -7,11 +7,11 @@ import styles from './Header.module.scss';
 
 export default function Header() {
   const { isAuthenticated, logout } = useAuth();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   if (!mounted) return null;
 
